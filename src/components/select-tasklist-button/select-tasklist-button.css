@@ -1,0 +1,41 @@
+.select-tasklist-container {
+  margin-top: 0.5rem;
+  width: 90%;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-family: Lato;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: white;
+  background: #ba2d0b;
+  border-radius: 3rem;
+}
+
+.selected {
+  background: white;
+  border: solid black 1px;
+  color: black;
+}
+
+.select-tasklist-container:focus {
+  outline-width: 0px;
+}
+
+.select-tasklist-button-id {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.select-tasklist-button-title {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
