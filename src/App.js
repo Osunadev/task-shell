@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 
-import { runProvidedCommand } from './utils/index';
+import { runProvidedCommand, updateSelTasklist } from './utils/index';
+import { generateTableImage } from './App.utils';
 
 import './App.css';
+import InputShell from './components/input-shell/input-shell';
 import SelectTaskLists from './components/select-tasklists/select-tasklists';
+import TaskListTable from './components/tasklist-table/tasklist-table';
+import SaveImageButton from './components/save-image-button/save-image-button';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true, // A flag to display only our content when it's false
       commandInput: '',
       commandError: '',
       taskLists: [],
-      selTaskList: 0
+      selTaskList: -1 // Meaning that there's no tasklist within our taskLists array
     };
   }
 
@@ -21,7 +26,9 @@ class App extends Component {
 
     if (taskListsBackup) {
       const { selTaskList, taskLists } = JSON.parse(taskListsBackup);
-      this.setState({ taskLists, selTaskList });
+      this.setState({ isLoading: false, taskLists, selTaskList });
+    } else {
+      this.setState({ isLoading: false });
     }
   }
 
@@ -45,15 +52,24 @@ class App extends Component {
       // Cleaning up the input and updating our taskLists array
       this.setState(
         prevState => {
-          const commandResult = runProvidedCommand(
+          const { status, taskLists } = runProvidedCommand(
             prevState.taskLists,
             prevState.commandInput
           );
 
+          const newSelTaskList = updateSelTasklist(
+            taskLists.length,
+            prevState.taskLists.length,
+            prevState.selTaskList
+          );
+
+          console.log(newSelTaskList);
+
           return {
             commandInput: '',
-            commandError: commandResult.status,
-            taskLists: commandResult.taskLists
+            commandError: status,
+            taskLists: taskLists,
+            selTaskList: newSelTaskList
           };
         },
         () => {
@@ -68,32 +84,49 @@ class App extends Component {
   };
 
   render() {
-    const { commandInput, commandError, taskLists, selTaskList } = this.state;
+    const {
+      commandInput,
+      commandError,
+      taskLists,
+      selTaskList,
+      isLoading
+    } = this.state;
 
     return (
       <div className='page-container'>
-        <h1 className='page-title'>TASK-SHELL</h1>
-        <input
-          type='text'
-          className='input-shell'
-          value={`$ ${commandInput}`}
-          onChange={this.handleCommandInput}
-          onKeyPress={this.handleCommandSubmit}
-          placeholder='Please enter a command...'
-        />
-        {commandError && <p className='error-message'>{commandError}</p>}
-        <div className='page-content'>
-          <SelectTaskLists
-            taskLists={taskLists}
-            selectedTaskListId={selTaskList}
-            changeSelection={this.handleChangeTasklist}
-          />
-          <div className='page-content--table'>
-            {taskLists.map((taskList, id) => (
-              <p>{taskList.title}</p>
-            ))}
-          </div>
-        </div>
+        {!isLoading && (
+          <>
+            <h1 className='page-title'>TASK-SHELL</h1>
+            <InputShell
+              commandInput={commandInput}
+              handleCommandInput={this.handleCommandInput}
+              handleCommandSubmit={this.handleCommandSubmit}
+            />
+            {commandError && <p className='error-message'>{commandError}</p>}
+            {selTaskList >= 0 && (
+              <div className='page-content'>
+                <SelectTaskLists
+                  taskLists={taskLists}
+                  selectedTaskListId={selTaskList}
+                  changeSelection={this.handleChangeTasklist}
+                />
+                <div className='page-content--table'>
+                  <TaskListTable
+                    taskListId={selTaskList}
+                    taskList={taskLists[selTaskList]}
+                  />
+                  <SaveImageButton
+                    onClick={() => {
+                      generateTableImage(taskLists, selTaskList);
+                    }}
+                  >
+                    Save tasklist as Image
+                  </SaveImageButton>
+                </div>
+              </div>
+            )}
+          </>
+        )}
       </div>
     );
   }

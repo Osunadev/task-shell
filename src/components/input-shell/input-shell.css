@@ -1,0 +1,14 @@
+.input-shell {
+  font-family: FiraMono;
+  font-size: 1.2rem;
+  padding: 1rem;
+  background: black;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  width: 90vw;
+}
+
+.input-shell:focus {
+  outline-width: 0px;
+}

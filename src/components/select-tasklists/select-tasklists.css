@@ -1,13 +1,14 @@
 .page-content--tasklists {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   width: 25%;
 }
 
 .select-tasklist-title {
   font-size: 2rem;
+  margin: 0px;
+  margin-bottom: 2rem;
   font-family: Alatsi;
   text-align: center;
 }

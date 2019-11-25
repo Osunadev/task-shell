@@ -102,7 +102,7 @@ class TaskListParser {
       title,
       description,
       date,
-      tasks: new Array()
+      tasks: []
     });
   }
 

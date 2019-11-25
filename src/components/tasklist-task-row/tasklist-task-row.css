@@ -1,0 +1,42 @@
+.tasklist-task-row-container {
+  border: 1px solid black;
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.title-container-task {
+  display: flex;
+  flex-direction: row;
+}
+
+.task-title {
+  width: 90%;
+  font-family: Lato;
+  font-size: 1.5rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+.task-id {
+  width: 10%;
+  font-family: Lato;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.task-time {
+  color: white;
+  background: black;
+  font-size: 1rem 0;
+  font-family: Alatsi;
+  padding: 0.5rem;
+}
+
+.task-description {
+  margin: 1rem;
+  font-family: Lato;
+  font-size: 1.2rem;
+  background: white;
+  text-align: center;
+}

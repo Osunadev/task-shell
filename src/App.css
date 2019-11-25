@@ -8,32 +8,25 @@
   font-family: Alatsi;
 }
 
-.input-shell {
-  font-family: FiraMono;
-  font-size: 1.2rem;
-  padding: 1rem;
-  background: black;
-  border: none;
-  border-radius: 1rem;
-  color: white;
-  width: 90vw;
-}
-
-.input-shell:focus {
-  outline-width: 0px;
-}
-
 .error-message {
-  color: red;
+  color: #ba2d0b;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-family: Lato;
 }
 
 .page-content {
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  margin-top: 2rem;
+  width: 90vw;
+  margin-top: 2.5rem;
 }
 
 .page-content--table {
-  width: 70%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

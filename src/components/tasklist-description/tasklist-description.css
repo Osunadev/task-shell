@@ -1,0 +1,12 @@
+.tasklist-container-description {
+  background: #575ae0;
+  color: white;
+  font-family: Lato;
+  padding: 1rem;
+}
+
+.tasklist-description {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0;
+}
