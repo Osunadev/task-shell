@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TASK-SHELL
 
-## Available Scripts
+This project aims to create a language composed of commands which allows to be able to **create lists of flexible tasks which can be downloaded in a convenient image format**.
 
-In the project directory, you can run:
+As mentioned, with this tool we can create lists of dynamic tasks to which we can assign a title, description and the date on which it is planned to use that task list, as well as the tasks that make up that list, along with the estimated completion time.
 
-### `npm start`
+> We have 3 types of commands: to **create**, **delete** and **modify** the **task list** and its respective **tasks**.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# TASK-SHELL COMMANDS
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## IMPORTANT NOTES
 
-### `npm test`
+- **task** and **task list** id's are purely numbers that aren't wrapped in any special symbols such as square brackets [] or quotes []. The **task-id's** and **tasklist-id's** start from number 1.
+- Quotation marks **“** are used for descriptions of our tasks or task lists.
+- Numbers are expressed without quotation marks, in addition to being used as id's, they are used for the **dates** of our **task lists** or for the estimated **time** in minutes of our **tasks**.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## COMMANDS
 
-### `npm run build`
+### TASK LIST
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**CREATE TASK LIST**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+    $ create tasklist [tasklist title]
+    $ create tasklist [tasklist title] description “some tasklist descr.”
+    $ create tasklist [tasklist title] date dd/mm/yyyy
+    $ create tasklist [tasklist title] description “some tasklist descr.” date dd/mm/yyyy
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**MODIFY TASK LIST**
 
-### `npm run eject`
+    $ modify tasklist tasklist-id title [new tasklist name]
+    $ modify tasklist tasklist-id description “new tasklist descr.”
+    $ modify tasklist tasklist-id date dd/mm/yyyy
+    $ modify tasklist tasklist-id title [new tasklist title] description “new tasklist descr.” date dd/mm/yyyy
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**REMOVE TASK LIST**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    $ remove tasklist tasklist-id
+    $ remove tasklist description tasklist-id
+    $ remove tasklist date tasklist-id
+    $ remove tasklist description date tasklist-id
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### TASK
 
-## Learn More
+**CREATE TASK**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    $ create task [task title] from tasklist-id
+    $ create task [task title] description “task descr.” from tasklist-id
+    $ create task [task title] time estimated-time-minutes from tasklist-id
+    $ create task [task title] description “task descr.” time estimated-time-minutes from tasklist-id
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**MODIFY TASK**
 
-### Code Splitting
+    $ modify task task-id title [new task title] from tasklist-id
+    $ modify task task-id description “new task descr.” from tasklist-id
+    $ modify task task-id time new-estimated-time-minutes from tasklist-id
+    $ modify task task-id title [new task title] description “new task descr.” time new-estimated-time-minutes from tasklist-id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**REMOVE TASK**
 
-### Analyzing the Bundle Size
+    $ remove task task-id from tasklist-id
+    $ remove task time task-id  from tasklist-id
+    $ remove task description  task-id from tasklist-id
+    $ remove task description time task-id from tasklist-id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+---
 
-### Making a Progressive Web App
+# COMMAND LANGUAGE TOKENS
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The logic behind our Task-Shell is based on a simple Lexer, which is used to create tokens based on an input string provided by us. Below are the different types of tokens along with their associated values:
 
-### Advanced Configuration
+| Token Type          | Token Value                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **StmtKeyboard**    | Can take the values ​​of **create**, **modify** and **remove**.                                                  |
+| **ElmtKeyboard**    | Can take the values of **tasklist** and **task**.                                                                |
+| **AttrKeyboard**    | Can take the values ​​of **description**, **date**, **time**, **title** and **form**.                            |
+| **TitleText**       | Can take the value of any text string. It differs from other tokens because it is wrapped in square brackets []. |
+| **DescriptionText** | Can take the value of any text string. It differs from other tokens because it is wrapped in quotes "".          |
+| **DateFormat**      | Can take the value of any date with the format **dd/mm/yyyy**.                                                   |
+| **Number**          | Can take the value of any number.                                                                                |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+After the Lexing process, we will have our tokens at hand and, with these, we will pass them to the Parser so that it interprets the tokens along with its production rules and, at the end of the process, we return a new object according to our needs. In this case, we would return a new array of task lists to use it in React, our Frontend Library.

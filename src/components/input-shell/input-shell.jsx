@@ -5,7 +5,8 @@ import './input-shell.css';
 const InputShell = ({
   commandInput,
   handleCommandInput,
-  handleCommandSubmit
+  handleCommandSubmit,
+  handleKeyDown
 }) => (
   <input
     type='text'
@@ -13,6 +14,7 @@ const InputShell = ({
     value={`$ ${commandInput}`}
     onChange={handleCommandInput}
     onKeyPress={handleCommandSubmit}
+    onKeyDown={handleKeyDown}
     placeholder='Please enter a command...'
   />
 );
