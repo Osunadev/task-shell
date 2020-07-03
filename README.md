@@ -72,9 +72,9 @@ The logic behind our Task-Shell is based on a simple Lexer, which is used to cre
 
 | Token Type          | Token Value                                                                                                      |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **StmtKeyboard**    | Can take the values ​​of **create**, **modify** and **remove**.                                                  |
-| **ElmtKeyboard**    | Can take the values of **tasklist** and **task**.                                                                |
-| **AttrKeyboard**    | Can take the values ​​of **description**, **date**, **time**, **title** and **form**.                            |
+| **StmtKeywoard**    | Can take the values ​​of **create**, **modify** and **remove**.                                                  |
+| **ElmtKeywoard**    | Can take the values of **tasklist** and **task**.                                                                |
+| **AttrKeywoard**    | Can take the values ​​of **description**, **date**, **time**, **title** and **form**.                            |
 | **TitleText**       | Can take the value of any text string. It differs from other tokens because it is wrapped in square brackets []. |
 | **DescriptionText** | Can take the value of any text string. It differs from other tokens because it is wrapped in quotes "".          |
 | **DateFormat**      | Can take the value of any date with the format **dd/mm/yyyy**.                                                   |

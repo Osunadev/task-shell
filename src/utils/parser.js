@@ -64,8 +64,9 @@ class TaskListParser {
     // (this.taskListsArray.length - 1) because our taskListId has a starting point of 0
     if (taskListId > this.taskListsArray.length - 1)
       throw Error(
-        `Parsing Error: There's no tasklist with the tasklist-id of: '${taskListId +
-          1}'!`
+        `Parsing Error: There's no tasklist with the tasklist-id of: '${
+          taskListId + 1
+        }'!`
       );
   }
 
@@ -102,7 +103,7 @@ class TaskListParser {
       title,
       description,
       date,
-      tasks: []
+      tasks: [],
     });
   }
 
@@ -112,7 +113,7 @@ class TaskListParser {
     this.modTaskListsArray[taskListId].tasks.push({
       title,
       description,
-      time
+      time,
     });
   }
 
@@ -252,8 +253,9 @@ class TaskListParser {
       this.addTask(taskListId, title, description, time);
     } else
       throw Error(
-        `Parsing Error: There shouldn't be a token after your your tasklist-id: '${taskListId +
-          1}' value!`
+        `Parsing Error: There shouldn't be a token after your your tasklist-id: '${
+          taskListId + 1
+        }' value!`
       );
   }
 

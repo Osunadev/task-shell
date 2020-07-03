@@ -5,11 +5,11 @@ export const runProvidedCommand = (taskListsArray, input) => {
   try {
     const lexer = new Lexer(input);
     const parser = new TaskListParser(lexer.tokens, taskListsArray);
-    return { taskLists: parser.getModTaskListsArray(), status: '' };
+    return { taskLists: parser.getModTaskListsArray(), error: undefined };
   } catch (error) {
     return {
       taskLists: taskListsArray,
-      status: error.message
+      error: error.message,
     };
   }
 };
@@ -20,16 +20,23 @@ export const updateSelTasklist = (
   prevTaskListsLength,
   prevSelTaskList
 ) => {
-  // If previous taskList array was empty, but now has its first taskList
-  if (!prevTaskListsLength && taskListsLength) return 0;
+  console.log(taskListsLength, prevTaskListsLength, prevSelTaskList);
 
-  // If our new taskLists array has less tasklists than our previous taskLists array
+  // If a tasklist was only modified
+  if (prevTaskListsLength === taskListsLength) return prevSelTaskList;
+
+  // If a new tasklist was created
+  if (prevTaskListsLength < taskListsLength) return taskListsLength - 1;
+
+  // If a tasklist was removed
   if (taskListsLength < prevTaskListsLength) {
-    // If the last taskList was selected before
-    if (prevSelTaskList === prevTaskListsLength - 1) return taskListsLength - 1;
-    else return prevSelTaskList;
-  } else {
-    // Meaning that we didn't remove any taskList from our array
-    return prevSelTaskList;
+    // If tasklist array is empty
+    if (!taskListsLength) return -1;
+
+    // If the prev selected tasklist respects the new length of the array
+    if (prevSelTaskList < taskListsLength - 1) return prevSelTaskList;
+
+    // If the prev selected tasklist was the end item
+    return taskListsLength - 1;
   }
 };

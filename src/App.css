@@ -17,6 +17,10 @@
   font-family: Lato;
 }
 
+.page-content--select-panel {
+  width: 30%;
+}
+
 .page-content {
   display: flex;
   flex-direction: row;
@@ -25,7 +29,7 @@
 }
 
 .page-content--table {
-  width: 75%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;

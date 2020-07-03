@@ -2,20 +2,14 @@ import React from 'react';
 
 import './input-shell.css';
 
-const InputShell = ({
-  commandInput,
-  handleCommandInput,
-  handleCommandSubmit,
-  handleKeyDown
-}) => (
+const InputShell = ({ commandInput, handleCommandInput, handleKeyDown }) => (
   <input
-    type='text'
-    className='input-shell'
+    type="text"
+    className="input-shell"
     value={`$ ${commandInput}`}
     onChange={handleCommandInput}
-    onKeyPress={handleCommandSubmit}
     onKeyDown={handleKeyDown}
-    placeholder='Please enter a command...'
+    placeholder="Please enter a command..."
   />
 );
 

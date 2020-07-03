@@ -1,10 +1,17 @@
 .table-container {
-  width: 70%;
+  width: 80%;
   background: white;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.tasklist-table-no-tasks {
+  text-align: center;
+  margin: 2rem;
+  font-size: 1.2rem;
 }
 
 .tasklist-table-title {

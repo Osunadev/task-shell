@@ -1,3 +1,4 @@
+/* Tasklist button css */
 .select-tasklist-container {
   margin-top: 0.5rem;
   width: 90%;
@@ -8,16 +9,17 @@
   font-family: Lato;
   cursor: pointer;
   font-size: 1.2rem;
-  font-weight: 800;
-  color: white;
-  background: #575ae0;
+  color: black;
+  background: white;
   border-radius: 3rem;
+  padding-right: 1.5rem;
+  border: solid black 1px;
 }
 
 .selected {
-  background: white;
-  border: solid black 1px;
-  color: black;
+  background: #575ae0;
+  color: white;
+  border: solid white 1px;
 }
 
 .select-tasklist-container:focus {
@@ -38,4 +40,23 @@
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
+}
+
+/* Instructions button css */
+.select-instruction-container {
+  width: 90%;
+  text-align: center;
+  background: white;
+  border: 1px solid black;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.select-instruction-container:hover {
+  cursor: pointer;
+}
+
+.selected-instruction {
+  background: black;
+  color: white;
 }
