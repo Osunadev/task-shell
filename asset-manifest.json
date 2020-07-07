@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/task-shell/static/css/main.08a01c0b.chunk.css",
+    "main.js": "/task-shell/static/js/main.340817c1.chunk.js",
+    "main.js.map": "/task-shell/static/js/main.340817c1.chunk.js.map",
+    "runtime-main.js": "/task-shell/static/js/runtime-main.733c9532.js",
+    "runtime-main.js.map": "/task-shell/static/js/runtime-main.733c9532.js.map",
+    "static/js/2.6c0811e3.chunk.js": "/task-shell/static/js/2.6c0811e3.chunk.js",
+    "static/js/2.6c0811e3.chunk.js.map": "/task-shell/static/js/2.6c0811e3.chunk.js.map",
+    "index.html": "/task-shell/index.html",
+    "precache-manifest.96746b94b1f754cbabe25a9c6e059136.js": "/task-shell/precache-manifest.96746b94b1f754cbabe25a9c6e059136.js",
+    "service-worker.js": "/task-shell/service-worker.js",
+    "static/css/main.08a01c0b.chunk.css.map": "/task-shell/static/css/main.08a01c0b.chunk.css.map",
+    "static/js/2.6c0811e3.chunk.js.LICENSE.txt": "/task-shell/static/js/2.6c0811e3.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/task-shell/static/media/Lato-Regular.2d36b1a9.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.733c9532.js",
+    "static/js/2.6c0811e3.chunk.js",
+    "static/css/main.08a01c0b.chunk.css",
+    "static/js/main.340817c1.chunk.js"
+  ]
+}
