@@ -20,8 +20,6 @@ export const updateSelTasklist = (
   prevTaskListsLength,
   prevSelTaskList
 ) => {
-  console.log(taskListsLength, prevTaskListsLength, prevSelTaskList);
-
   // If a tasklist was only modified
   if (prevTaskListsLength === taskListsLength) return prevSelTaskList;
 

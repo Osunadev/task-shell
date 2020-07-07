@@ -9,8 +9,6 @@ import TaskListTasks from '../tasklist-tasks/tasklist-tasks';
 class TaskListTable extends PureComponent {
   render() {
     const { taskList } = this.props;
-    console.log(taskList);
-
     return (
       <div id="taskListTable" className="table-container">
         <TaskListHeader title={taskList.title} date={taskList.date} />
